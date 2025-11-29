@@ -1,4 +1,4 @@
-FROM maven:3.92.11
+FROM maven:3.9.11
 WORKDIR /opt/server
 COPY pom.xml .
 COPY src .
