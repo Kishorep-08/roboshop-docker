@@ -4,7 +4,7 @@ COPY files .
 RUN pip3 install -r requirements.txt
 EXPOSE 8080
 ENV CART_HOST="cart" \
-    ART_PORT="8080" \
+    CART_PORT="8080" \
     USER_HOST="user" \
     USER_PORT="8080" \
     AMQP_HOST="rabbitmq" \
