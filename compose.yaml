@@ -23,7 +23,7 @@ services:
     image: kishore8856/mysql:v1
     container_name: mysql
   
-  rabbbitmq:
+  rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
     environment:
