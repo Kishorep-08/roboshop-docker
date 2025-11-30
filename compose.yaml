@@ -14,7 +14,61 @@ services:
     container_name: catalogue
     depends_on:
       - mongodb
+
+  redis:
+    image: redis:7.0
+    container_name: redis
+
+  mysql:
+    image: kishore8856/mysql:v1
+    container_name: mysql
+  
+  rabbbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
+
+  user:
+    image: kishore8856/user:v1
+    container_name: user
+    depends_on:
+      - mongodb
+      - redis
+
+  cart:
+    image: kishore8856/cart:v1
+    container_name: cart
+    depends_on:
+      - redis
+      - catalogue
+
+  shipping:
+    image: kishore8856/shipping:v1
+    container_name: shipping
+    depends_on:
+      - mysql
     
+  payment:
+    image: kishore8856/payment:v1
+    container_name: payment
+    depends_on:
+      - cart
+      - user
+      - rabbitmq
+  
+  frontend:
+    image: kishore8856/frontend:v1
+    container_name: frontend
+    ports:
+      - 80:80
+    depends_on:
+      - catalogue
+      - user
+      - cart
+      - shipping
+      - payment
 
 
 
