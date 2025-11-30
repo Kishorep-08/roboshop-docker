@@ -8,8 +8,8 @@ services:
   mongodb:
     image: kishore8856/mongodb:v1
     container_name: mongodb
-    volumes:
-      - mongodb:/data/db
+    volumes: #(Attaching persistent volume)
+      - mongodb:/data/db   # docker run -d -v mongodb:/data/db 
 
   catalogue:
     image: kishore8856/catalogue:v1
@@ -78,7 +78,7 @@ services:
       - payment
 
 volumes:
-  mongodb:
+  mongodb:  # docker volume create mongodb  location: /var/lib/docker/volumes/mongodb/_data
   redis:
   mysql:
   rabbitmq:
