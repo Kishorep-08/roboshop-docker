@@ -12,7 +12,7 @@ services:
       - mongodb:/data/db   # docker run -d -v mongodb:/data/db 
 
   catalogue:
-    image: kishore8856/catalogue:v1
+    image: kishore8856/catalogue:v2
     container_name: catalogue
     depends_on:
       - mongodb
