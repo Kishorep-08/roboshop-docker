@@ -16,4 +16,5 @@ LABEL created_by="Kishore" \
 EXPOSE 8080
 COPY --from=build /opt/server .
 USER roboshop
+RUN chown -R roboshop:roboshop /opt/server
 CMD ["node", "server.js"]
