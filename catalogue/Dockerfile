@@ -16,5 +16,5 @@ EXPOSE 8080
 COPY --from=build /opt/server .
 RUN chown -R roboshop:roboshop /opt/server
 USER roboshop
-CMD ["server.js"]
 ENTRYPOINT ["node"]
+CMD ["server.js"]
