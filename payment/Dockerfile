@@ -18,7 +18,7 @@ ENV CART_HOST="cart" \
     AMQP_USER="roboshop" \
     AMQP_PASS="roboshop123"
 # Copying application files from builder stage
-COPY --from=builder --chown=roboshop:roboshop /opt/server/python-install /usr/local/bin
+COPY --from=builder --chown=roboshop:roboshop python-install /usr/local/bin
 COPY --chown=roboshop:roboshop files .
 USER roboshop
 ENTRYPOINT ["uwsgi", "--ini"]
