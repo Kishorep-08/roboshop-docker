@@ -1,11 +1,11 @@
 FROM python:3 AS builder
 WORKDIR /opt/server
 COPY files .
-RUN pip3 install -r --prefix=/python-install files/requirements.txt
+RUN pip3 install --prefix=/python-install -r files/requirements.txt
 
 FROM python:3.9.25-alpine3.22
 WORKDIR /opt/server
-RUN addgroup --system roboshop && adduser --system --group roboshop
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 EXPOSE 8080
 LABEL created_by="Kishore" \
       component="payment" \
