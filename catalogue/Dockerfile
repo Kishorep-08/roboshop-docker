@@ -1,3 +1,4 @@
+
 FROM node:20 AS build
 WORKDIR /opt/server
 COPY package.json .
@@ -13,8 +14,11 @@ LABEL created_by="Kishore" \
       component="catalogue" \
       project="roboshop"
 EXPOSE 8080
+# Copying build artifacts from build stage
 COPY --from=build /opt/server .
+# Changing ownership to roboshop user
 RUN chown -R roboshop:roboshop /opt/server
 USER roboshop
+# CMD providing default arguments to ENTRYPOINT - so the CMD that keeps the container running will be CMD ["node", "server.js"]
 ENTRYPOINT ["node"]
 CMD ["server.js"]
