@@ -1,7 +1,7 @@
 FROM python:3 AS builder
 WORKDIR /opt/server
-COPY files .
-RUN pip3 install --prefix=/python-install -r files/requirements.txt
+COPY requirements.txt .
+RUN pip3 install --prefix=/python-install -r requirements.txt
 
 FROM python:3.9.25-alpine3.22
 WORKDIR /opt/server
