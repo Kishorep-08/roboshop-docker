@@ -11,7 +11,7 @@ ENV REDIS_HOST=redis \
     CATALOGUE_HOST=catalogue \
     CATALOGUE_PORT=8080    
 LABEL created_by="Kishore" \
-      component="catalogue" \
+      component="cart" \
       project="roboshop"
 EXPOSE 8080
 # Copying build artifacts from build stage

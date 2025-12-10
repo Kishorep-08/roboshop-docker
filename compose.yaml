@@ -60,6 +60,8 @@ services:
       - catalogue
 
   shipping:
+    build:
+      context: ./shipping
     image: kishore8856/shipping:v1
     container_name: shipping
     depends_on:

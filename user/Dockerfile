@@ -11,7 +11,7 @@ ENV MONGO="true" \
     REDIS_URL='redis://redis:6379' \
     MONGO_URL="mongodb://mongodb:27017/users"    
 LABEL created_by="Kishore" \
-      component="catalogue" \
+      component="user" \
       project="roboshop"
 EXPOSE 8080
 # Copying build artifacts from build stage
