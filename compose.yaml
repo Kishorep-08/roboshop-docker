@@ -6,12 +6,16 @@ networks:
 
 services:
   mongodb:
+    build:
+      context: ./mongodb
     image: kishore8856/mongodb:v1
     container_name: mongodb
     volumes: #(Attaching persistent volume)
       - mongodb:/data/db   # docker run -d -v mongodb:/data/db 
 
   catalogue:
+    build:
+      context: ./catalogue
     image: kishore8856/catalogue:v2
     container_name: catalogue
     depends_on:
@@ -38,6 +42,8 @@ services:
       - rabbitmq:/var/lib/rabbitmq
 
   user:
+    build:
+      context: ./user
     image: kishore8856/user:v1
     container_name: user
     depends_on:
@@ -45,6 +51,8 @@ services:
       - redis
 
   cart:
+    build:
+      context: ./cart
     image: kishore8856/cart:v1
     container_name: cart
     depends_on:

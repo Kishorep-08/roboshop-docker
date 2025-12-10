@@ -1,10 +1,35 @@
-FROM node:20
+FROM node:20 AS build
 WORKDIR /opt/server
 COPY package.json .
 COPY server.js .
 RUN npm install
-EXPOSE 8080
+
+FROM node:20.19-alpine
+WORKDIR /opt/server
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop 
 ENV REDIS_HOST=redis \
     CATALOGUE_HOST=catalogue \
-    CATALOGUE_PORT=8080
-CMD ["node", "server.js"]
+    CATALOGUE_PORT=8080    
+LABEL created_by="Kishore" \
+      component="catalogue" \
+      project="roboshop"
+EXPOSE 8080
+# Copying build artifacts from build stage
+COPY --from=build /opt/server .
+# Changing ownership to roboshop user
+RUN chown -R roboshop:roboshop /opt/server
+USER roboshop
+# CMD providing default arguments to ENTRYPOINT - so the CMD that keeps the container running will be CMD ["node", "server.js"]
+ENTRYPOINT ["node"]
+CMD ["server.js"]
+
+# FROM node:20
+# WORKDIR /opt/server
+# COPY package.json .
+# COPY server.js .
+# RUN npm install
+# EXPOSE 8080
+# ENV REDIS_HOST=redis \
+#     CATALOGUE_HOST=catalogue \
+#     CATALOGUE_PORT=8080
+# CMD ["node", "server.js"]
