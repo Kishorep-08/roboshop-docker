@@ -15,9 +15,7 @@ LABEL created_by="Kishore" \
       project="roboshop"
 EXPOSE 8080
 # Copying build artifacts from build stage
-COPY --from=build /opt/server/shipping.jar .
-# Changing ownership to roboshop user
-RUN chown -R roboshop:roboshop /opt/server
+COPY --from=build --chown=roboshop:roboshop /opt/server/shipping.jar .
 USER roboshop
 ENTRYPOINT ["java", "-jar"]
 CMD ["shipping.jar"]
