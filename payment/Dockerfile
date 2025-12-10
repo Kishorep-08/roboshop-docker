@@ -3,7 +3,7 @@ WORKDIR /opt/server
 COPY files .
 RUN pip3 install -r --prefix=/python-install files/requirements.txt
 
-FROM 3.9.25-slim
+FROM python:3.9.25-alpine3.22
 WORKDIR /opt/server
 RUN addgroup --system roboshop && adduser --system --group roboshop
 EXPOSE 8080
