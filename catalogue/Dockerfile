@@ -5,7 +5,7 @@ COPY package.json .
 COPY server.js .
 RUN npm install
 
-FROM node:20.19-alpine
+FROM gcr.io/distroless/nodejs20-debian12
 WORKDIR /opt/server
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop 
 ENV MONGO="true" \
