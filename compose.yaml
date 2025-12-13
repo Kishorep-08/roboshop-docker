@@ -32,7 +32,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
   
-  
+
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
@@ -79,6 +79,8 @@ services:
       - rabbitmq
   
   frontend:
+    build:
+      context: ./frontend
     image: kishore8856/frontend:v1
     container_name: frontend
     ports:
