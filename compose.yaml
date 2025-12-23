@@ -8,7 +8,7 @@ services:
   mongodb:
     build:
       context: ./mongodb
-    image: kishore8856/mongodb:v1
+    image: kishore8856/mongodb:v2
     container_name: mongodb
     volumes: #(Attaching persistent volume)
       - mongodb:/data/db   # docker run -d -v mongodb:/data/db 
@@ -54,7 +54,7 @@ services:
   cart:
     build:
       context: ./cart
-    image: kishore8856/cart:v1
+    image: kishore8856/cart:v2
     container_name: cart
     depends_on:
       - redis
@@ -71,7 +71,7 @@ services:
   payment:
     build:
       context: ./payment
-    image: kishore8856/payment:v1
+    image: kishore8856/payment:v2
     container_name: payment
     depends_on:
       - cart
@@ -81,7 +81,7 @@ services:
   frontend:
     build:
       context: ./frontend
-    image: kishore8856/frontend:v1
+    image: kishore8856/frontend:v2
     container_name: frontend
     ports:
       - 80:80
